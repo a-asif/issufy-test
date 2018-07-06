@@ -1,0 +1,42 @@
+<form [formGroup]="dealForm" method="POST" novalidate (ngSubmit)="onSubmitAccountDetails(dealForm.value)">
+    <h1 mat-dialog-title>Create Deal</h1>
+    <!-- Deal Reference -->
+    <mat-form-field class="full-width">
+        <input matInput maxlength="25" placeholder="Deal Refernce" formControlName="deal_ref" required>
+        <mat-error *ngFor="let validation of deal_validation_messages.deal_ref">
+            <mat-error class="error-message" *ngIf="dealForm.get('deal_ref').hasError(validation.type) && (dealForm.get('deal_ref').dirty || dealForm.get('deal_ref').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+    </mat-form-field>
+
+    <!-- Deal Type -->
+    <mat-form-field class="full-width">
+        <mat-select placeholder="Deal Type" matInput formControlName="deal_type_id" required>
+            <mat-option *ngFor="let deal of deals" [value]="deal.value">
+                {{ deal.title }}
+            </mat-option>
+        </mat-select>
+        <mat-error *ngFor="let validation of deal_validation_messages.deal_type_id">
+            <mat-error class="error-message" *ngIf="dealForm.get('deal_type_id').hasError(validation.type) && (dealForm.get('deal_type_id').dirty || dealForm.get('deal_type_id').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+    </mat-form-field>
+
+    <!-- Issuer ID -->
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Issue Id" formControlName="issuer_id" required>
+        <mat-error *ngFor="let validation of deal_validation_messages.issuer_id">
+            <mat-error class="error-message" *ngIf="dealForm.get('issuer_id').hasError(validation.type) && (dealForm.get('issuer_id').dirty || dealForm.get('issuer_id').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+    </mat-form-field>
+
+    <!-- Deal Name -->
+    <mat-form-field class="full-width">
+        <input matInput placeholder="Deal Name" formControlName="deal_name" required>
+        <mat-error *ngFor="let validation of deal_validation_messages.deal_name">
+            <mat-error class="error-message" *ngIf="dealForm.get('deal_name').hasError(validation.type) && (dealForm.get('deal_name').dirty || dealForm.get('deal_name').touched)">{{validation.message}}</mat-error>
+        </mat-error>
+    </mat-form-field>
+
+
+    <button class="submit-btn" color="primary" mat-raised-button [disabled]="!dealForm.valid" type="submit">Submit</button>
+    <button mat-raised-button (click)="onNoClick()">Cancel</button>
+</form>

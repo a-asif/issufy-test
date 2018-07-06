@@ -1,0 +1,19 @@
+<div fxLayout="row" fxFlex="flex-grow" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="1%">
+  	<div fxFlex="30%" *ngFor="let data of data">
+  		<mat-card>
+    		<mat-card-header>
+	    		<mat-card-title>
+    	  			<span class="text-muted card-title" fxFlex="100%">{{data.title}}</span>
+    	  			<mat-chip class="{{data.chip.color}} mat-chip icon-chip">
+    	  				<mat-icon class="mat-icon material-icons" role="img" aria-hidden="true">{{data.chip.icon}}</mat-icon>
+    	  				{{data.chip.value}}%
+    	  			</mat-chip>
+    			</mat-card-title>
+    			<mat-card-subtitle>
+    				<h3 class="card-amount">{{data.amount}}</h3>
+    				<small class="text-muted" class="card-type">{{data.type}}</small>
+    			</mat-card-subtitle>
+    		</mat-card-header>
+  		</mat-card>
+  	</div>
+</div>
